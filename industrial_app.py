@@ -100,7 +100,7 @@ fig=px.bar(state_workers,x="India/States",y="Main Workers - Total -  Persons")
 st.plotly_chart(fig)
 import os
 print(os.path.exists("industrial_app(3).py"))
-uploaded_file=st.file_uploader("upload csv",type=(["csv"])
+uploaded_file=st.file_uploader("upload csv",type=["csv"])
                                if uploaded_file is not None:
                                    df=pd.read_csv(uploaded_file)
                                
