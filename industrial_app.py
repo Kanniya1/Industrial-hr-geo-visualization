@@ -103,6 +103,7 @@ st.dataframe(df.head())
 state_workers=df.groupby("India/States")["Main Workers - Total -  Persons"].sum().reset_index()
 fig=px.bar(state_workers,x="India/States",y="Main Workers - Total -  Persons")
 st.plotly_chart(fig)
+pip install streamlit
 streamlit run industrial_app.py
 !pip install pyngrok -q
 from pyngrok import ngrok
