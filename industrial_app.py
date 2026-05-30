@@ -1,7 +1,12 @@
 import glob
 files=glob.glob("/content/*.csv")
 print(files)
-!pip install pandas numpy plotly streamlit scikit-learn nltk
+import pandas 
+import numpy
+import plotly 
+import streamlit 
+import scikit-learn
+import nltk
 import os
 for f in os.listdir('/content'):
   print(f)
