@@ -5,7 +5,7 @@ import pandas
 import numpy
 import plotly 
 import streamlit 
-import scikit_learn
+import sklearn
 import nltk
 import os
 for f in os.listdir('/content'):
