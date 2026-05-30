@@ -101,8 +101,8 @@ st.plotly_chart(fig)
 import os
 print(os.path.exists("industrial_app(3).py"))
 uploaded_file=st.file_uploader("upload csv",type=["csv"])
-                               if uploaded_file is not None:
-                                   df=pd.read_csv(uploaded_file)
+if uploaded_file is not None:
+  df=pd.read_csv(uploaded_file)
                                
 files.download('industrial_app.py')
 import streamlit as st
