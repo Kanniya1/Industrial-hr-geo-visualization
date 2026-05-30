@@ -98,7 +98,6 @@ st.dataframe(df.head())
 state_workers=df.groupby("India/States")["Main Workers - Total -  Persons"].sum().reset_index()
 fig=px.bar(state_workers,x="India/States",y="Main Workers - Total -  Persons")
 st.plotly_chart(fig)
-print(public_url)
 import os
 print(os.path.exists("industrial_app(3).py"))
 from google.colab import files
