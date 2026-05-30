@@ -91,7 +91,6 @@ st.plotly_chart(fig2)
 fig2.show()
 import os
 print(os.listdir())
-!ls
 import os
 print(os.path.exists("industrial_app.py"))
 
