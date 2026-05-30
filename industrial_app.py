@@ -64,8 +64,8 @@ for col in df.columns:
   print(col)
   import os
 print("merged_dataset.csv"in
-os.listdir('/content'))
-files=glob.glob('/content/*.csv')
+os.listdir('.'))
+files=glob.glob('*.csv')
 print("number of files:",len(files))
 df_list=[]
 for filr in files:
@@ -74,7 +74,7 @@ for filr in files:
     df_list.append(temp)
   except Exception as e:
     print("error in",file,":",e)
-df.to_csv('/content/merged_dataset.csv',index=False)
+df.to_csv('./merged_dataset.csv',index=False)
 print("merged file created successfully")
 print("shape:",df.shape)
 import streamlit as st
