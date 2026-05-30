@@ -5,9 +5,9 @@ import plotly
 import sklearn
 import streamlit as st
 import os
-for f in os.listdir('/content'):
+for f in os.listdir("."):
   print(f)
-files=glob.glob("/content/*.csv")
+files=glob.glob("*.csv")
 frames=[]
 for file in files:
   try:
