@@ -100,8 +100,12 @@ fig=px.bar(state_workers,x="India/States",y="Main Workers - Total -  Persons")
 st.plotly_chart(fig)
 import os
 print(os.path.exists("industrial_app(3).py"))
-from google.colab import files
+uploaded_file=st.file_uploader("upload csv",type=(["csv"])
+                               if uploaded_file is not None:
+                                   df=pd.read_csv(uploaded_file)
+                               
 files.download('industrial_app.py')
 import streamlit as st
-from google .colab import files
-files.download('merged_dataset.csv')
+st.download_button("download csv",df.to_csv(index=False),
+                   "merged_dataset.csv",
+                   "text/csv")
