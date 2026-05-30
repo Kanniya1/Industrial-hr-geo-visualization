@@ -2,6 +2,7 @@ import glob
 import pandas as pd
 import numpy as np
 import plotly 
+import sklearn
 import streamlit as st
 import os
 for f in os.listdir('/content'):
