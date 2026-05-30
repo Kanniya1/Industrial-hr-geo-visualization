@@ -1,17 +1,11 @@
 import glob
-files=glob.glob("/content/*.csv")
-print(files)
-import pandas 
-import numpy
+import pandas as pd
+import numpy as np
 import plotly 
-import streamlit 
-import sklearn
-import nltk
+import streamlit as st
 import os
 for f in os.listdir('/content'):
   print(f)
-import pandas as pd
-import glob
 files=glob.glob("/content/*.csv")
 frames=[]
 for file in files:
