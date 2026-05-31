@@ -20,17 +20,19 @@ for file in files:
             on_bad_lines="skip"
         )
     )
-    print("loaded:",file)
   except Exception as e:
-    print("Error:",file)
-    print(e)
+    st.warning(f"could not read{file}:{e}")
+if len(frames)==0:
+  st.error("no csv files found in repository")
+  st.stop()
+  #merge datasets
 df=pd.concat(frames,ignore_index=True)
 #data cleaning
 df.drop_duplicates(inplace=True)
 df.columns=df.columns.str.strip()
 df.fillna("Unknown",inplace=True)
-#save merged file
-df.to_csv("merged_dataset.csv",index=false)
+#save merged dataset
+df.to_csv("merged_dataset.csv",index=False)
 #industry classification
 def classify_industry(text):
   text=str(text).lower()
@@ -44,27 +46,34 @@ def classify_industry(text):
     return "Manufacturing"
   elif "construction" in text:
     return "Contruction"
+  elif "chemical" in text:
+    return "Chemical"
+  elif "plastic" in text:
+    return "Plastic"
+  elif "rubber" in text:
+    return "Rubber"
   else:
     return "others"
 #find industry description column
-India/States=None
+industry_column=None
 for col in df.columns:
-  if "India/States" in col .lower():
-   India/States=col
-if India/States:
+  if "industry" in col .lower():
+   industry_column=col
+   break
+if industry_column is not None :
   df["Industry_Category"]=(df[India/States].astype(str).apply(classify_industry))
 else:
   df["industry_Category"]="others"
   #data preview
 st.subheader("dataset preview")
-#datainfo
+#data shape
 st.subheader("dataset shape")
 st.write(df.shape)
 #sate fiter
-if "India/Stae" in df.columns:
+if "India/States" in df.columns:
   selected_state=
   st.sidebar.selectbox(
-    "Select State",sorted(df["India/States"].unique())
+    "Select State",sorted(df["India/States"].astype (str).unique())
     )
   filtered_df=df[
   df["India/State"]==
