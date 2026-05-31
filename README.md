@@ -117,7 +117,7 @@ pip install -r requirements.txt
 
 ## Run the Application
 
-streamlit run app.py
+streamlit run industrial_app.py
 
 ## Key Insights
 
