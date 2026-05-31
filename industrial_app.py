@@ -6,7 +6,7 @@ import sklearn
 import glob
 #title
 st.set_page_config(page_title="Industrial HR geo Visualization",layout="wide")
-st.title("Industrial Human Resourcr Geo Visualization")
+st.title("Industrial Human Resource Geo Visualization")
 #merge and load csv files
 files=glob.glob("*.csv")
 frames=[]
