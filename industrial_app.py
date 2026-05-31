@@ -94,7 +94,12 @@ if(
      fig1=px.bar(state_workers,x="India/States",y="Main Workers - Total - Persons",title="Workers by State")
      st.plotly_chart(fig1,use_container_width=True)
 #male vs female pie chart
-if("Main Workers -Total - Males" in df.columns and "Main Workers - Total - Females" in df.columns):
+if(
+  "Main Workers -Total - Males" in df.columns
+  and
+  "Main Workers - Total - Females"
+  in df.columns
+):
   male=pd.to_numeric(df["Main Workers - Total - Males"],errors="coerce").sum()
   female=pd.to_numeric(df["Main Workers - Total - Females"],errors="coerce").sum()
   Gender_data=pd.DataFrame({"Gender":["Male","Female"],"Workers":[male,female]})
@@ -104,7 +109,7 @@ if("Main Workers -Total - Males" in df.columns and "Main Workers - Total - Femal
 
 industry_count=(df["Industry_Category"].value_counts().reset_index())
 industry_count.columns=["Industry","Count"]
-fig3=px.bar(industry_count,x="Industry",y="count",title="Industry Cattegories")
+fig3=px.bar(industry_count,x="Industry",y="Count",title="Industry Categories")
 st.plotly_chart(fig3,use_container_width=True)
 
 #download button
