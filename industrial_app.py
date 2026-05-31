@@ -61,20 +61,15 @@ def classify_industry(text):
   else:
     return "others"
 #find industry description column
-industry_column=None
-for col in df.columns:
-  if "industry" in col .lower():
-   industry_column=col
-   break
-if industry_column  :
-  df["Industry_Category"]=(df[industry_column].astype(str).apply(classify_industry))
+if "NIC Name" in df.columns:
+  df["Industry_Category"]=(df["NIC Name"].astype(str).apply(classify_industry))
 else:
   df["Industry_Category"]="others"
   #data preview
 st.subheader("dataset preview")
 st.dataframe(df.head())
 #data shape
-st.subheader("dataset shape")
+st.subheader("Dataset Shape")
 st.write(df.shape)
 #sate fiter
 if "India/States" in df.columns:
