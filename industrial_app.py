@@ -66,22 +66,22 @@ else:
   df["industry_Category"]="others"
   #data preview
 st.subheader("dataset preview")
+st.dataframe(df.head())
 #data shape
 st.subheader("dataset shape")
 st.write(df.shape)
 #sate fiter
 if "India/States" in df.columns:
-  selected_state=
-  st.sidebar.selectbox(
+  selected_state=st.sidebar.selectbox(
     "Select State",sorted(df["India/States"].astype (str).unique())
     )
   filtered_df=df[
-  df["India/State"]==
+  df["India/State"] ==
   selected_state
   ]
 else:
    filtered_df=df
-#workers by state
+#workers by state bar chart
 if("India/Stattes" in df.columns
    and
    "Main Workers - total - Persons"
@@ -89,19 +89,19 @@ if("India/Stattes" in df.columns
      state_workers=(df.groupby("India/States")["Main Workers - total - Persons"].sum().reset_index())
      fig1=px.bar(state_workers,x="India/States",y="Main Workers - total - Persons",title="Workers by State")
      st.plotly_chart(fig1,use_container_width=True)
-#male vs female
-if("Main Workers -Total -Males"indf.columns and "Main Workers - Total - Females" in df.columns):
+#male vs female pie chart
+if("Main Workers -Total -Males"in df.columns and "Main Workers - Total - Females" in df.columns):
   male=df["Main Workers - Total - Males"].sum()
   female=df["Main Workers - Total - Females"].sum()
   Gender_data=pd.DataFrame({"Gender":["Male","Female"],"Workers":[male,female]})
   fig2=px.pie(Gender_data ,names ="Gender",values="Workers",title="male vs female workers")
   st.plotly_chart(fig2,use_container_width=True)
-#industry category
+#industry category chart
 industry_count=(df["Industry_Category"].value_counts().reset_index())
 industry_count.columns=["Industry ","Count"]
 fig3=px.bar(industry_count,x="Industry",y="count",title="Industry Cattegories")
 st.plotly_chart(fig3,use_container_width=True)
-#download merged dataset
+#download button
 csv=df.to_csv(index=False)
 st.download_button(label="Download Merged Dtaset",data=csv,file_name="merged_dataset.csv",mime="text/csv")
 #summary
