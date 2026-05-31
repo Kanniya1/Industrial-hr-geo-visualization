@@ -30,10 +30,16 @@ df=pd.concat(frames,ignore_index=True)
 #data cleaning
 df.drop_duplicates(inplace=True)
 df.columns=df.columns.str.strip()
-df.fillna("Unknown",inplace=True)
+text_cols=df.select_dtypes(include=["object"]).columns
+df[text_cols]=df[text_cols].fillna("Unknown")
+num_cols=df.select_dtypes(include=["number"].columns
+df[num_cols]=df[num_cols].fillna(0)
 #save merged dataset
 df.to_csv("merged_dataset.csv",index=False)
-#industry classification
+#save merged dataset
+st.subheader("Column Names")
+st.write(df.columns.tolist())
+# nlp industry classification
 def classify_industry(text):
   text=str(text).lower()
   if "retail" in text:
@@ -60,8 +66,8 @@ for col in df.columns:
   if "industry" in col .lower():
    industry_column=col
    break
-if industry_column is not None :
-  df["Industry_Category"]=(df[India/States].astype(str).apply(classify_industry))
+if industry_column  :
+  df["Industry_Category"]=(df[industry_column].astype(str).apply(classify_industry))
 else:
   df["industry_Category"]="others"
   #data preview
@@ -77,41 +83,43 @@ if "India/States" in df.columns:
     )
   filtered_df=df[
   df["India/State"] ==
-  selected_state
+selected_state
   ]
 else:
-   filtered_df=df
+  st.warning("'India/States' column not found")
+  filtered_df=df
 #workers by state bar chart
-if("India/Stattes" in df.columns
+if(
+  "India/Stattes" in df.columns
    and
-   "Main Workers - total - Persons"
+   "Main Workers - Total - Persons"
    in df.columns):
-     state_workers=(df.groupby("India/States")["Main Workers - total - Persons"].sum().reset_index())
-     fig1=px.bar(state_workers,x="India/States",y="Main Workers - total - Persons",title="Workers by State")
+     df["Main Workers - Total - Persons"]=pd.to_numeric(df["Main Workers - Total - Persons"],errors="coerce")
+     state_workers=(df.groupby("India/States")["Main Workers - Total - Persons"].sum().reset_index())
+     fig1=px.bar(state_workers,x="India/States",y="Main Workers - Total - Persons",title="Workers by State")
      st.plotly_chart(fig1,use_container_width=True)
 #male vs female pie chart
-if("Main Workers -Total -Males"in df.columns and "Main Workers - Total - Females" in df.columns):
-  male=df["Main Workers - Total - Males"].sum()
-  female=df["Main Workers - Total - Females"].sum()
+if("Main Workers -Total -Males" in df.columns and "Main Workers - Total - Females" in df.columns):
+  male=pd.to_numeric(df["Main Workers - Total - Males"],errors="coerce").sum()
+  female=pd.to_numeric(df["Main Workers - Total - Females"],errors="coerce").sum()
   Gender_data=pd.DataFrame({"Gender":["Male","Female"],"Workers":[male,female]})
   fig2=px.pie(Gender_data ,names ="Gender",values="Workers",title="male vs female workers")
   st.plotly_chart(fig2,use_container_width=True)
 #industry category chart
+
 industry_count=(df["Industry_Category"].value_counts().reset_index())
 industry_count.columns=["Industry ","Count"]
 fig3=px.bar(industry_count,x="Industry",y="count",title="Industry Cattegories")
 st.plotly_chart(fig3,use_container_width=True)
+
 #download button
 csv=df.to_csv(index=False)
-st.download_button(label="Download Merged Dtaset",data=csv,file_name="merged_dataset.csv",mime="text/csv")
+st.download_button("Download Merged Dtaset",csv,"merged_dataset.csv","text/csv")
 #summary
 st.subheader("Summary")
-st.write(
-  f"""
-  Total Records:{df.shape[0]}
-  Total Columns:{df.shape[1]}
-  Industry Categories:{df['Industry_Category'].nunique()}
-  """)
+st.write("Rows:",df.shape[0])
+st.write("column:",df.shape[1])
+st.write("Industry Categories:",df['Industry_Category'].nunique())
 
 
 
