@@ -105,7 +105,7 @@ Industrial-HR-Geo-Visualization/
 
 1. Clone the repository
 
-git clone https://github.com/yourusername/Industrial-HR-Geo-Visualization.git
+git clone https://github.com/Kanniya1/Industrial-HR-Geo-Visualization.git
 
 2. Navigate to the project directory
 
