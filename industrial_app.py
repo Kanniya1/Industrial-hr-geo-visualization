@@ -64,7 +64,7 @@ st.write(df.shape)
 if "India/Stae" in df.columns:
   selected_state=
   st.sidebar.selectbox(
-    "Select State"'sorted(df["India/
+    "Select State",sorted(df["India/
     States"].unique())
     )
   filtered_df=df[
