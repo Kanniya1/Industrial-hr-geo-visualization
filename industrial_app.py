@@ -32,7 +32,7 @@ df.drop_duplicates(inplace=True)
 df.columns=df.columns.str.strip()
 text_cols=df.select_dtypes(include=["object"]).columns
 df[text_cols]=df[text_cols].fillna("Unknown")
-num_cols=df.select_dtypes(include=["number"].columns
+num_cols=df.select_dtypes(include=["number"]).columns
 df[num_cols]=df[num_cols].fillna(0)
 #save merged dataset
 df.to_csv("merged_dataset.csv",index=False)
