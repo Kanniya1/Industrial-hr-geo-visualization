@@ -109,7 +109,7 @@ if(
   male=pd.to_numeric(df["Main Workers - Total - Males"],errors="coerce").sum()
   female=pd.to_numeric(df["Main Workers - Total - Females"],errors="coerce").sum()
   Gender_data=pd.DataFrame({"Gender":["Male","Female"],"Workers":[male,female]})
-  fig2=px.pie(Gender_data ,names ="Gender",values="Workers",title="male vs female workers")
+  fig2=px.bar(Gender_data ,x="male",y="female",title="male vs female workers")
   st.plotly_chart(fig2,use_container_width=True)
 #industry category chart
 st.subheader("industrial categories")
