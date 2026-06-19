@@ -6,7 +6,6 @@ import plotly.express as px
 import sklearn
 import glob
 
-
 #title
 st.set_page_config(page_title="Industrial HR geo Visualization",layout="wide")
 #image
