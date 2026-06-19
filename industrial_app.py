@@ -105,7 +105,7 @@ male_col="Main Workers -Total - Males"
 female_col="Main Workers - Total - Females"
 if male_col not in df.columns or female_col not in  df.columns:
          st.error("could not find the exact column names")
-         st.write("available columns in your file are:"list(df.columns))
+         st.write("available columns in your file are:",list(df.columns))
 else:
          df[male_col]=pd.to_nuumeric(df[male_col],errors="coerce").fillna(0)
          df[female_col]=pd.to_numeric(df[female_col],errors="coerce").fillna(0)
