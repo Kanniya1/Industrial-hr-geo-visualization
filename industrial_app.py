@@ -99,23 +99,21 @@ if("India/States" in df.columns and "Main Workers - Total -  Persons"in df.colum
          st.plotly_chart(fig1,use_container_width=True)
 
 #male vs female pie chart
-st.subheader("gender distribution")
-df.columns=df.columns.str.strip()
-male_col="Main Workers -Total - Males"
-female_col="Main Workers - Total - Females"
-if male_col not in df.columns or female_col not in  df.columns:
-         st.error("could not find the exact column names")
-         st.write("available columns in your file are:",list(df.columns))
+st.subheader("rural vs urban")
+rural_col="Main Workers - Rural -  Persons"
+urban_col="Main Workers - Urban -  Persons"
+if rural_col not in df.columns or urban_col not in df.columns:
+         st.error("could not find ural and urbanworker columns.")
 else:
-         df[male_col]=pd.to_nuumeric(df[male_col],errors="coerce").fillna(0)
-         df[female_col]=pd.to_numeric(df[female_col],errors="coerce").fillna(0)
-         total_males=df[male_col].sum()
-         total_females=df[female_col].sum()
-         gender_data=pd.DataFrame({"Group":["Males","Females"],
-                                   "Total Workers":[total_males,total_females]})
-         fig2=px.bar(gender_data,x="Gender",y="Total Workers",title="Male vs Female Workers",color="Group")
+         df[rural_col]=pd.to_numeric(df[rural_col],errors="coerce").fillna(0)
+         df[urban_col]=pd.to_numeric(df[urban_col],errors="coerce").fillna(0)
+         total_rural=df[rural_col].sum()
+         total_urban=df[urban_col].sum()
+         area_data=pd.DataFrame({"Area Type":["Rural","Urban"],"Total Workers":[total_rural,total,urban]})
+         fig2=px.pie(area_data,values="Total Workers",names="Area Type",
+                     title="rural vs urban workers split",color="Area Type",color_discrete_map={"Rural":"green","urban":"blue"})
          st.plotly_chart(fig2,use_container_width=True)
-#industry category chart
+                  #industry category chart
 st.subheader("industrial categories")
 industry_count=(df["Industry_Category"].value_counts().reset_index())
 industry_count.columns=["Industry","Count"]
