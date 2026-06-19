@@ -1,5 +1,4 @@
 import streamlit as st
-from PIL import Image
 import pandas as pd
 import numpy as np
 import plotly.express as px
@@ -9,7 +8,8 @@ import glob
 #title
 st.set_page_config(page_title="Industrial HR geo Visualization",layout="wide")
 #image
-image=Image.open("dashboard_banner.jbg")
+st.image("https://static.vecteezy.com/system/resources/thumbnails/020/685/858/small/analyst-working-on-business-analytics-dashboard-with-kpi-charts-and-metrics-to-analyze-data-and-create-insight-reports-for-executives-and-strategical-decisions-operations-and-performance-management-photo.jpg",
+         use_container_width=True)
 st.image(image,use_container_width=True)
 st.title("Industrial Human Resource Geo Visualization")
 #merge and load csv files
