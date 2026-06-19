@@ -11,6 +11,8 @@ st.set_page_config(page_title="Industrial HR geo Visualization",layout="wide")
 st.image("https://static.vecteezy.com/system/resources/thumbnails/020/685/858/small/analyst-working-on-business-analytics-dashboard-with-kpi-charts-and-metrics-to-analyze-data-and-create-insight-reports-for-executives-and-strategical-decisions-operations-and-performance-management-photo.jpg",
          use_container_width=True)
 st.title("Industrial Human Resource Geo Visualization")
+st.markdown("### workforce distribution analysis across india")
+st.divider()
 #merge and load csv files
 files=glob.glob("*.csv")
 frames=[]
@@ -65,6 +67,7 @@ def classify_industry(text):
   else:
     return "others"
 #find industry description column
+
 if "NIC Name" in df.columns:
   df["Industry_Category"]=(df["NIC Name"].astype(str).apply(classify_industry))
 else:
@@ -88,6 +91,7 @@ else:
   st.warning("'India/States' column not found")
   filtered_df=df
 #workers by state bar chart
+st.subheader("top 10 states by mainworkers")
 if(
   "India/States" in df.columns
    and
@@ -98,6 +102,7 @@ if(
      fig1=px.bar(state_workers,x="India/States",y="Main Workers - Total - Persons",title="Workers by State")
      st.plotly_chart(fig1,use_container_width=True)
 #male vs female pie chart
+st.subheader("gender pie chart")
 if(
   "Main Workers -Total - Males" in df.columns
   and
@@ -110,7 +115,7 @@ if(
   fig2=px.pie(Gender_data ,names ="Gender",values="Workers",title="male vs female workers")
   st.plotly_chart(fig2,use_container_width=True)
 #industry category chart
-
+st.subheader("industrial categories")
 industry_count=(df["Industry_Category"].value_counts().reset_index())
 industry_count.columns=["Industry","Count"]
 fig3=px.bar(industry_count,x="Industry",y="Count",title="Industry Categories")
