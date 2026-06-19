@@ -43,8 +43,8 @@ df[num_cols]=df[num_cols].fillna(0)
 #save merged dataset
 df.to_csv("merged_dataset.csv",index=False)
 #save merged dataset
-st.subheader("Column Names")
-st.write(df.columns.tolist())
+#st.subheader("Column Names")
+#st.write(df.columns.tolist())
 # nlp industry classification
 def classify_industry(text):
   text=str(text).lower()
