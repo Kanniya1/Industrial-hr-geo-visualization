@@ -93,7 +93,7 @@ else:
 #workers by state bar chart
 st.subheader("top  states by mainworkers")
 if("India/States" in df.columns and "Main Workers - Total -  Persons"in df.columns):
-         df["Main Workers - Total -  Personss"]=pd.to_numeric(df["Main Workers - Total -  Persons"],errors="coerce")
+         df["Main Workers - Total -  Persons"]=pd.to_numeric(df["Main Workers - Total -  Persons"],errors="coerce")
          state_workers=(df.groupby("India/States")["Main Workers - Total -  Persons"].sum().reset_index())
          fig1=px.bar(state_workers,x="India/States",y="Main Workers - Total -  Persons",title="Workers by state")
          st.plotly_chart(fig1,use_container_width=True)
@@ -106,11 +106,10 @@ if(
   "Main Workers - Total - Females"
   in df.columns
 ):
-  male=pd.to_numeric(df["Main Workers - Total - Males"],errors="coerce").sum()
-  female=pd.to_numeric(df["Main Workers - Total - Females"],errors="coerce").sum()
-  Gender_data=pd.DataFrame({"Gender":["Male","Female"],"Workers":[male,female]})
-  fig2=px.bar(Gender_data ,x="male",y="female",title="male vs female workers")
-  st.plotly_chart(fig2,use_container_width=True)
+         df["Main Workers - Total - Females"]=pd.to_numeric(df["Main Workers - Total - Females"],errors="coerce")
+         Main Workers -Total - Males=(df.groupy("Main Workers -Total - Males")["Main Workers - Total - Females"].sum().reset_index())
+         fig2=px.bar(Main Workers -Total - Males ,x="Main Workers -Total - Males",y="Main Workers - Total - Females",title="male vs female workers")
+         st.plotly_chart(fig2,use_container_width=True)
 #industry category chart
 st.subheader("industrial categories")
 industry_count=(df["Industry_Category"].value_counts().reset_index())
