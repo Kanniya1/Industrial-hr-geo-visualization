@@ -100,20 +100,20 @@ if("India/States" in df.columns and "Main Workers - Total -  Persons"in df.colum
 
 #male vs female pie chart
 st.subheader("gender distribution")
-if(
-  "Main Workers -Total - Males" in df.columns
-  and
-  "Main Workers - Total - Females"
-  in df.columns
-):
-         df["Main Workers -Total - Males"]=pd.to_numeric(df["Main Workers -Total - Males"],errors="coerce")
-         df["Main Workers - Total - Females"]=pd.to_numeric(df["Main Workers - Total - Females"],errors="coerce")
-         df["Main Workers -Total - Males"]=df["Main Workers -Total - Males"].fillna(0)
-         df["Main Workers - Total - Females"]=df["Main Workers - Total - Females"].fillna(0)
-         total_males=df["Main Workers -Total - Males"].sum()
-         total_females=df["Main Workers - Total - Females"].sum()
-         gender_data=pd.DataFrame({"Gender":["Males","Females"],"Total Workers":[total_males,total_females]})
-         fig2=px.bar(gender_data,x="Gender",y="Total Workers",title="Male vs Female Workers",color="Gender")
+df.columns=df.columns.str.strip()
+male_col="Main Workers -Total - Males"
+female_col="Main Workers - Total - Females"
+if male_col not in df.columns or female_col not in  df.columns:
+         st.error("could not find the exact column names")
+         st.write("available columns in your file are:"list(df.columns))
+else:
+         df[male_col]=pd.to_nuumeric(df[male_col],errors="coerce").fillna(0)
+         df[female_col]=pd.to_numeric(df[female_col],errors="coerce").fillna(0)
+         total_males=df[male_col].sum()
+         total_females=df[female_col].sum()
+         gender_data=pd.DataFrame({"Gender":["Males","Females"],
+                                   "Total Workers":[total_males,total_females]})
+         fig2=px.bar(gender_data,x="Gender",y="Total Workers",title="Male vs Female Workers",colour="gender")
          st.plotly_chart(fig2,use_container_width=True)
 #industry category chart
 st.subheader("industrial categories")
