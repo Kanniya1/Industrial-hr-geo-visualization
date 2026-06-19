@@ -109,7 +109,7 @@ else:
          df[urban_col]=pd.to_numeric(df[urban_col],errors="coerce").fillna(0)
          total_rural=df[rural_col].sum()
          total_urban=df[urban_col].sum()
-         area_data=pd.DataFrame({"Area Type":["Rural","Urban"],"Total Workers":[total_rural,total,urban]})
+         area_data=pd.DataFrame({"Area Type":["Rural","Urban"],"Total Workers":[total_rural,total_urban]})
          fig2=px.pie(area_data,values="Total Workers",names="Area Type",
                      title="rural vs urban workers split",color="Area Type",color_discrete_map={"Rural":"green","urban":"blue"})
          st.plotly_chart(fig2,use_container_width=True)
