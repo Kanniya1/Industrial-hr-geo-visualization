@@ -107,8 +107,8 @@ if(
   in df.columns
 ):
          df["Main Workers - Total - Females"]=pd.to_numeric(df["Main Workers - Total - Females"],errors="coerce")
-         Main Workers -Total - Males=(df.groupy("Main Workers -Total - Males")["Main Workers - Total - Females"].sum().reset_index())
-         fig2=px.bar(Main Workers -Total - Males ,x="Main Workers -Total - Males",y="Main Workers - Total - Females",title="male vs female workers")
+         gender_data=(df.groupy("Main Workers -Total - Males")["Main Workers - Total - Females"].sum().reset_index())
+         fig2=px.bar(gender_data,x="Main Workers -Total - Males",y="Main Workers - Total - Females",title="male vs female workers")
          st.plotly_chart(fig2,use_container_width=True)
 #industry category chart
 st.subheader("industrial categories")
