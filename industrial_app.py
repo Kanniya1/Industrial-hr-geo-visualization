@@ -92,10 +92,10 @@ else:
   filtered_df=df
 #workers by state bar chart
 st.subheader("top  states by mainworkers")
-if("India/States" in df.columns and "Main Workers - Total - Persons"in df.columns):
-         df["Main Workers - Total - Persons"]=pd.to_numeric(df["Main Workers - Total - Persons"],errors="coerce")
-         state_workers=(df.groupby("India/States")["Main Workers - Total - Persons"].sum().reset_index())
-         fig1=px.bar(state_workers,x="India/State",y="Main Workers - Total - Persons",title="Workers by state")
+if("India/States" in df.columns and "Main Workers - Total -  Persons"in df.columns):
+         df["Main Workers - Total -  Personss"]=pd.to_numeric(df["Main Workers - Total -  Persons"],errors="coerce")
+         state_workers=(df.groupby("India/States")["Main Workers - Total -  Persons"].sum().reset_index())
+         fig1=px.bar(state_workers,x="India/State",y="Main Workers - Total -  Persons",title="Workers by state")
          st.plotly_chart(fig1,use_container_width=True)
 
 #male vs female pie chart
