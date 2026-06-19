@@ -4,8 +4,13 @@ import numpy as np
 import plotly.express as px
 import sklearn
 import glob
+
+
 #title
 st.set_page_config(page_title="Industrial HR geo Visualization",layout="wide")
+#image
+image=Image.open("dashboard_banner.jbg")
+st.image(image,use_container_width=True)
 st.title("Industrial Human Resource Geo Visualization")
 #merge and load csv files
 files=glob.glob("*.csv")
